@@ -30,7 +30,7 @@ $paginator = $data['paginator'];
             <div class="post-author">
                 <div class="post-author-info">
                     <div class="author-avatar">
-                        <img src="<?= IMG_PATH ?>/avatars/<?= ($author && $author->getAvatar()) ? $author->getAvatar() : "no-avatar.jpg" ?>">
+                        <img src="<?= getenv('IMG_PATH') ?>/avatars/<?= ($author && $author->getAvatar()) ? $author->getAvatar() : "no-avatar.jpg" ?>">
                         <br>
                     </div> 
                     <div class="author-name">
@@ -78,9 +78,12 @@ $paginator = $data['paginator'];
                     <i class="fas fa-pencil-alt fa-5x answer-icon"></i>
                 </div>
                 <div class="post-content">
+                    <?php
+                        $page = getenv("PER_PAGE") == count($posts) ? $paginator->getPage()+1 : $paginator->getPage();
+                    ?>
                     <form 
                         method="post" 
-                        action="?ctrl=home&action=addPost&id=<?= $topic->getId() ?>&page=<?= PER_PAGE == count($posts) ? $paginator->getPage()+1 : $paginator->getPage() ?>#last-post">
+                        action="?ctrl=home&action=addPost&id=<?= $topic->getId() ?>&page=<?= $page ?>#last-post">
                         <div>
                             <label for="post">Votre réponse</label>
                             <textarea class="tinymce-textarea" name="post" id="post"></textarea>

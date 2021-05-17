@@ -1,17 +1,19 @@
 <?php
-require_once('config.php');
 require_once('vendor/autoload.php');
 
+use Dotenv\Dotenv;
 use App\Core\Router;
 use App\Core\Session;
-use App\Model\Entity\User;
+
+$dotenv = Dotenv::createUnsafeImmutable(__DIR__);
+$dotenv->load();
 
 session_start();
 
 //on fait générer une clé propre à la session (si c'est pas déjà fait)
 $key = Session::generateKey();
 //on génère le jeton CSRF pour CETTE REQUETE HTTP SEULEMENT
-$csrf_token = hash_hmac("sha256", SECRET, $key);
+$csrf_token = hash_hmac("sha256", getenv("SECRET"), $key);
 
 //si la protection présente dans Router renvoie true
 if(Router::CSRFProtection($csrf_token)){

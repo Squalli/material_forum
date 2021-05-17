@@ -28,7 +28,7 @@ $paginator = $data['paginator'];
             <tr>
                 <td data-label="Utilisateur">
                     <div class="author-avatar">
-                        <img src="<?= IMG_PATH ?>/avatars/<?= ($user->getAvatar()) ?? "no-avatar.jpg" ?>">
+                        <img src="<?= getenv('IMG_PATH') ?>/avatars/<?= ($user->getAvatar()) ?? "no-avatar.jpg" ?>">
                     </div> 
                     <a href="?ctrl=security&action=profile&id=<?= $user->getId() ?>"><?= $user->getUsername() ?></a><br>
                 </td>

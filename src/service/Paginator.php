@@ -10,7 +10,7 @@ class Paginator
     public function __construct($baseRoute, $nbElements){
         $this->baseRoute  = $baseRoute;
         $this->nbElements = $nbElements;
-        $this->totalPages = ceil($this->nbElements/PER_PAGE);
+        $this->totalPages = ceil($this->nbElements/getenv("PER_PAGE"));
     }
     /**
      * récupère la page courante 
@@ -46,8 +46,8 @@ class Paginator
      * ex : LIMIT 5 OFFSET 10 garde 5 résultats en omettant les 10 premiers (donc du 11eme au 15eme élément)
      */
     public function paginateSQL(){
-        $offset = ($this->getPage()-1) * PER_PAGE;
-        return "LIMIT ".PER_PAGE." OFFSET ".$offset;
+        $offset = ($this->getPage()-1) * getenv("PER_PAGE");
+        return "LIMIT ".getenv("PER_PAGE")." OFFSET ".$offset;
     }
 
     /**

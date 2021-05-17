@@ -3,7 +3,6 @@ namespace App\Core;
 
 abstract class Router 
 {
-    private static $defaultCtrl = "home";
 
     public static function CSRFProtection($token){
         if(!empty($_POST)){
@@ -19,7 +18,7 @@ abstract class Router
     }
 
     public static function handleRequest($params){
-        $ctrlname = ucfirst(self::$defaultCtrl)."Controller";//par défaut !!
+        $ctrlname = ucfirst(getenv("DEFAULT_CONTROLLER"))."Controller";//par défaut !!
         
         $method = "index";
 

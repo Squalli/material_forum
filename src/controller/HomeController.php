@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
     
-use PDOException;
 use App\Core\Router;
 use App\Core\Session;
 use App\Service\Paginator;
