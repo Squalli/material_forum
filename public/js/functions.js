@@ -5,7 +5,7 @@ function handleLockTopic(event, link){
     let url = link.getAttribute("href")
     let lock = link.dataset.lock
 
-    url = "http://localhost:3000/"+ url +"&actualLock=" + lock
+    url = url +"&actualLock=" + lock
     
     fetch(url, { 
         method: 'GET',

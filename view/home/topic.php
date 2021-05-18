@@ -29,7 +29,7 @@ $paginator = $data['paginator'];
         <article class="post" <?= $index == count($posts)-1 ? 'id="last-post"' : '' ?>>
             <div class="post-author">
                 <div class="post-author-info">
-                    <div class="author-avatar">
+                    <div class="author-avatar hidden-on-mobile">
                         <img src="<?= getenv('IMG_PATH') ?>/avatars/<?= ($author && $author->getAvatar()) ? $author->getAvatar() : "no-avatar.jpg" ?>">
                         <br>
                     </div> 
@@ -51,7 +51,7 @@ $paginator = $data['paginator'];
                 <?php 
                     if($author){ 
                         ?>
-                        <div class="user-status">
+                        <div class="user-status hidden-on-mobile">
                             <span class="user-grade"><?= $author->getGrade() ?></span>
                             <span class="user-score"><?= $author->getScore() ?></span> 
                         </div>
@@ -74,7 +74,7 @@ $paginator = $data['paginator'];
         <?php
             if(Session::get("user")){
                 ?>
-                <div class="post-author">
+                <div class="post-author hidden-on-mobile">
                     <i class="fas fa-pencil-alt fa-5x answer-icon"></i>
                 </div>
                 <div class="post-content">

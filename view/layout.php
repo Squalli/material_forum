@@ -15,7 +15,7 @@ use App\Core\Session;
     <link rel="stylesheet" href="<?= getenv('CSS_PATH') ?>/style.css">
     <title><?= $title ?></title>
     <script src="<?= getenv('JS_PATH') ?>/sortable.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/<?= getenv("TINYMCE_API_KEY") ?>/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
             selector: '.tinymce-textarea',

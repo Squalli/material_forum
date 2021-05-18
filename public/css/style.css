@@ -1,5 +1,8 @@
 :root{
     --grey-color: rgb(225, 232, 235);
+    --lighter-blue: rgb(177, 212, 253);
+    --dark-blue: rgb(36, 20, 110);
+    --hover-dark-blue: rgb(135, 137, 255);
 }
 
 *{
@@ -46,17 +49,17 @@ a{
     font-weight: 700;
     border: none;
     padding: 0.5em 1em;
-    background-color: rgb(46, 48, 168);
+    background-color: var(--dark-blue);
     border-radius: 0.5em;
     transition: background-color 0.3s;
     color: #fff;
 }
 .btn:hover{
-    background-color:rgb(177, 212, 253);
-    color: rgb(61, 87, 146);
+    background-color:var(--lighter-blue);
+    color: var(--dark-blue);
 }
 .answer-icon{
-    color: rgb(46, 48, 168);
+    color: var(--dark-blue);
     padding: 2rem;
 }
 .done{
@@ -64,7 +67,7 @@ a{
 }
 @keyframes done{
     from{
-        text-shadow: 0px 0px 6px rgb(61, 87, 146);
+        text-shadow: 0px 0px 6px var(--dark-blue);
         transform: scale(2, 2);
     }
     to{
@@ -73,7 +76,7 @@ a{
 }
 
 .tox-tinymce{
-    border: 1px solid rgb(177, 212, 253) !important;
+    border: 1px solid var(--dark-blue) !important;
 }
 
 form{
@@ -89,7 +92,7 @@ form p:first-child{
 }
 label{
     font-size: 0.9em;
-    color: rgb(61, 87, 146);
+    color: var(--dark-blue);
     font-weight: 600;
 }
 input, textarea{
@@ -97,7 +100,7 @@ input, textarea{
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     padding: 0.5em;
-    border: 1px solid rgb(177, 212, 253);
+    border: 1px solid var(--dark-blue);
 }
 input[type=submit], button{
     font-family: 'Poppins', sans-serif;
@@ -108,6 +111,9 @@ input[type=submit], button{
     padding: 2rem 0;
     text-align: center;
     position: relative;
+}
+#title-bar h1{
+    text-transform: uppercase;
 }
 
 #page-wrapper{
@@ -120,16 +126,30 @@ input[type=submit], button{
 #page-content{
     max-width: 1024px;
     margin: auto;
+    position: relative;
 }
 #page-content a, footer a{
-    color: rgb(46, 48, 168);
+    color: var(--dark-blue);
 }
 #page-content a:hover, footer a:hover{
-    color: rgb(135, 137, 255);
+    color: var(--hover-dark-blue);
 }
 #page-content a.btn{
     color: #fff;
 }
+#page-content a.btn:hover{
+    color: var(--dark-blue);
+}
+
+#floating-actions{
+    top: -3em;
+    right: 0;
+    border: 3px solid #fff;
+    border-radius: 0.7em;
+    background-color: #fff;
+    position: absolute;
+}
+
 table{
     border-collapse: collapse;
     width: 100%;
@@ -190,10 +210,11 @@ th, td{
 #menu ul{
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    
 }
 #menu li{
     padding: 0.5em 1em;
+    height: 100%;
 }
 
 #menu li span{
@@ -203,29 +224,40 @@ th, td{
 #menu #main-menu{
     flex: 1;
 }
+#menu #user-menu{
+    border-radius: 0.5em;
+    background-color: var(--dark-blue);
+}
 #menu #user-menu li{
-    background-color: rgb(46, 48, 168);
     transition: background-color 0.5s;
+    position: relative;
 }
 #menu #user-menu li:first-child{
+    padding-left: 2.5em;
     border-radius: 0.5em 0 0 0.5em;
 }
 #menu #user-menu li:last-child{
     border-radius: 0 0.5em 0.5em 0;
 }
+
 #menu #user-menu li:hover{
-    background-color: rgb(177, 212, 253);
+    background-color: var(--lighter-blue);
     color: #313238;
 }
+#menu #user-menu li a{
+    display: flex;  
+    align-items: center;
+}
+
 #menu #user-menu a img{
-    height: 2em;
-    width: 2em;
-    display: inline-block;
-    margin-left: 0;
-    margin-top: 0;
+    left: 0;
+    top: 0;
+    position: absolute;
+    height: 2.1em;
+    width: 2.1em;
+    margin: 0.2em;
     object-fit: cover;
     border-radius: 0.3em;
-    margin-left: -0.4em;
 }
 
 #messages{
@@ -234,6 +266,7 @@ th, td{
     bottom: -1em;
     width: 100%;
     text-align: center;
+    z-index: 4;
 }
 #messages.display{
     display: block;
@@ -278,20 +311,26 @@ th, td{
 .page-infos{
     padding: 1em 0;
     background-color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 
 .post{
     display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--lighter-blue);
+    margin: 1em;
 }
-.post:nth-child(even){
-    background-color:rgb(241, 245, 255);
+.post:last-of-type{
+    border: none;
 }
+
 .post-author{
-    padding: 1em 1em 2em;
+    padding: 1em 1em 1em 0;
     flex: 1;
 }
 .post-author-info{
-    
     display: flex;
 }
 .author-avatar{
@@ -303,7 +342,7 @@ th, td{
 }
 .author-avatar img{
     border-radius: 1em;
-    border: 1px solid rgb(46, 48, 168);
+    border: 1px solid var(--dark-blue);
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -320,37 +359,41 @@ th, td{
 }
 .post-content{
     flex: 4;
-    padding: 0em 1em 2em;
+    padding: 0 0 2em 1em;
 }
 
 .post-answer{
     margin-top: 1em;
+    
 }
 
-#pagination{
+.pagination{
     display: flex;
     justify-content: center;
     position: relative;
 }
-#pagination ul{
+.pagination ul{
     display: flex;
     justify-content: center;
     padding: 0;
     list-style: none;
     
 }
-#pagination li a{
+.pagination li a{
     padding: 0.2em 0.5em;
     width: 2em;
     display: inline-block;
-    
     text-align: center;
     border: 1px solid #fff;
     margin: 0.3em;
+    transition: background-color 0.4s;
 }
-#pagination li.active a{
-    color: rgb(46, 48, 168);
-    border: 1px solid rgb(46, 48, 168);
+.pagination li a:hover{
+    background-color: var(--lighter-blue);
+}
+.pagination li.active a{
+    color: var(--dark-blue);
+    border: 1px solid var(--dark-blue);
 }
 .pagination-arrow{
     position: absolute;
@@ -363,6 +406,28 @@ th, td{
     right: 0;
 }
 
+#profile{
+    display: flex;
+}
+#profile-avatar{
+    width: 10em;
+}
+#profile-avatar img{
+    flex: 1;
+    object-fit: cover;
+    width: 10em;
+    height: 10em;
+    border: 1px solid var(--dark-blue);
+    border-radius: 1em;
+}
+#profile-avatar figcaption{
+    text-align: center;
+    color: var(--dark-blue);
+}
+#profile-description{
+    flex: 1;
+}
+
 footer{
     background-color:#fff;
     color: #313238;
@@ -373,25 +438,6 @@ footer{
         background-position: top left;
         background-size: auto 100% ;
     }
-}
-
-@media all and (max-width:760px){
-    #menu li i{
-        font-size: 1.5em;
-    }
-    #menu li span{
-        display: none;
-    }
-
-    .btn{
-        display: block;
-        text-align: center;
-        margin: auto;
-        line-height: 1.2em;
-        max-width: 50%;
-        min-width: 150px;
-    }
-
     .table thead {
         display: none;
     }
@@ -427,7 +473,35 @@ footer{
         display: none;
     }
 
-    .author-avatar{
+}
+
+@media all and (max-width:760px){
+    .hidden-on-mobile{
         display: none;
     }
+    #menu li i{
+        font-size: 1.5rem;
+    }
+    #menu li span{
+        display: none;
+    }
+
+    .btn{
+        display: block;
+        text-align: center;
+        margin: auto;
+        line-height: 1.2em;
+        max-width: 50%;
+        min-width: 150px;
+    }
+
+    .post{
+        margin: 0;
+        padding: 1em 0;
+        flex-direction: column;
+    }
+    .post-author, .post-content{
+        padding: 0;
+    }
+
 }

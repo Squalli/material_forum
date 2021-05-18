@@ -62,7 +62,7 @@ class Paginator
          
         $currentPage = $this->getPage();
         
-        $html = "<section id='pagination'><ul>";
+        $html = "<section class='pagination'><ul>";
                 
             if($this->totalPages > 1 && $currentPage > 1){
                 $html.= "<li class='pagination-arrow'>".
