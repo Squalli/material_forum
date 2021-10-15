@@ -18,7 +18,7 @@ class HomeController extends AC
     }
 
     public function index(){ 
-        $this->authenticationRequired();
+        //$this->authenticationRequired();
 
         return $this->render("home/home.php", [
             "topics" => $this->topicManager->getAll(),

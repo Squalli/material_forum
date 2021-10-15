@@ -17,13 +17,15 @@ abstract class Router
         return true;
     }
 
-    public static function handleRequest($params){
+    public static function handleRequest($uri){
         $ctrlname = ucfirst(getenv("DEFAULT_CONTROLLER"))."Controller";//par défaut !!
         
         $method = "index";
 
-        if(isset($params['ctrl'])){
-            $urlCtrl = $params['ctrl'];
+        //$params = explode("/", $uri);
+        $params = [$_GET["ctrl"], $_GET["action"], isset($_GET["id"]) ? $_GET["id"] : null];
+        if(isset($params[0])){
+            $urlCtrl = $params[0];
 
             if(class_exists("App\\Controller\\".ucfirst($urlCtrl)."Controller")){
                 $ctrlname = ucfirst($urlCtrl)."Controller";
@@ -34,12 +36,12 @@ abstract class Router
         $ctrlname = "App\\Controller\\".$ctrlname;
         $ctrl = new $ctrlname();
 
-        if(isset($params['action']) && method_exists($ctrl, $params['action'])){
-            $method = $params['action'];
+        if(isset($params[1]) && method_exists($ctrl, $params[1])){
+            $method = $params[1];
         }
 
-        if(isset($params['id'])){
-            $id = $params['id'];
+        if(isset($params[2])){
+            $id = $params[2];
         }
         else $id = null;
         
@@ -54,11 +56,14 @@ abstract class Router
         $route = "Location:";
 
         if(is_array($params)){
-            $route.= "?ctrl=".$params['ctrl'];
-            $route.= $params['method'] ? "&action=".$params['method'] : "";
+            $route.= $params['ctrl'];
+            $route.= $params['method'] ? "/".$params['method'] : "";
             if(!empty($params['param'])){
                 foreach($params['param'] as $param => $value){
-                    $route.= "&".$param."=".$value;
+                    if($param == "id"){
+                        $route.= "/".$value;
+                    }
+                    else $route.= "?".$param."=".$value;
                 }
             }
         }

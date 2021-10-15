@@ -71,7 +71,9 @@ class SecurityController extends AC
             if($username && $email && $password){
                 if(!$this->manager->getOneByCredentials($username, $email)){
                     if($password === $password_repeat){
-                        $avatar = Upload::uploadFile("avatar", "avatar-".$username, IMG_PATH."/avatars/");
+                        $path = getenv("IMG_PATH")."/avatars/";
+                        $filename = "avatar-".uniqid()."-".md5($username);
+                        $avatar = Upload::uploadFile("avatar", $filename , $path);
                         $hash = password_hash($password, PASSWORD_ARGON2I);
 
                         if($this->manager->insertUser($username, $email, $hash, $avatar)){

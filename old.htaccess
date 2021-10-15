@@ -1,0 +1,7 @@
+RewriteEngine On
+
+ErrorDocument 404 /view/404.html
+
+RewriteRule ^([^/]*)\.html$ /index.php?ctrl=$1 [L]
+RewriteRule ^([^/]*)/([^/]*)\.html$ /index.php?ctrl=$1&action=$2 [L]
+RewriteRule ^([^/]*)/([^/]*)/([^/]*)\.html$ /index.php?ctrl=$1&action=$2&id=$3 [QSA]

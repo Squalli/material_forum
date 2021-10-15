@@ -4,7 +4,7 @@ $topics = $data['topics'];
 ?>
 
 <div class="page-infos">
-    <a class="btn" href="ctrl?home&action=newTopic">Nouveau sujet</a>
+    <a class="btn" href="?ctrl=home&action=newTopic">Nouveau sujet</a>
 </div>
 <?php
 
